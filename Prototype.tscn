@@ -184,11 +184,22 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="VBoxContainer" type="VBoxContainer" parent="HUD/Logs"]
-margin_left = 10.0
-margin_top = 6.0
-margin_right = 215.0
-margin_bottom = 549.0
+[node name="ScrollContainer" type="ScrollContainer" parent="HUD/Logs"]
+margin_left = 8.0
+margin_top = 7.0
+margin_right = 219.0
+margin_bottom = 554.0
+follow_focus = true
+scroll_horizontal_enabled = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HUD/Logs/ScrollContainer"]
+margin_right = 211.0
+margin_bottom = 547.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
 alignment = 2
 __meta__ = {
 "_edit_use_anchors_": false
@@ -334,6 +345,7 @@ __meta__ = {
 [connection signal="timeout" from="Arena/Enemy/TurnTimer" to="Arena/Enemy" method="_on_TurnTimer_timeout"]
 [connection signal="attack_enemy" from="Arena/Player" to="Arena" method="_on_Player_attack_enemy"]
 [connection signal="courage_changed" from="Arena/Player" to="HUD/Bars" method="_on_Player_courage_changed"]
+[connection signal="enter_state" from="Arena/Player" to="HUD/Logs" method="_on_Player_enter_state"]
 [connection signal="hope_changed" from="Arena/Player" to="HUD/Bars" method="_on_Player_hope_changed"]
 [connection signal="player_died" from="Arena/Player" to="." method="_on_Player_player_died"]
 [connection signal="sanity_changed" from="Arena/Player" to="HUD/Bars" method="_on_Player_sanity_changed"]

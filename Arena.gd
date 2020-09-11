@@ -15,13 +15,16 @@ func _ready():
 		player.player_turn = true
 
 
-func attack(attacker, attacked, attack_name):
+func attack(attacker, attacked, attack_name, has_bonus: bool):
 	var attack
 	for a in attacks:
 		if a["name"] == attack_name:
 			attack = a
 			break
-	var damage = int(round(rand_range(attack["min_damage"], attack["max_damage"])))
+	var modifier : float = 1.0
+	if has_bonus:
+		modifier = 1.25
+	var damage = int(round(rand_range(attack["min_damage"], attack["max_damage"]) * modifier))
 	attacked.take_damage(damage, attack["type"])
 	attacker.take_damage(attack["cost"], attack["type"])
 	
@@ -33,10 +36,10 @@ func attack(attacker, attacked, attack_name):
 
 
 func _on_Enemy_attack_player(attack_name):
-	attack(enemy, player, attack_name)
+	attack(enemy, player, attack_name, false)
 	player.player_turn = true
 
 
-func _on_Player_attack_enemy(attack_name):
-	attack(player, enemy, attack_name)
+func _on_Player_attack_enemy(attack_name, has_bonus):
+	attack(player, enemy, attack_name, has_bonus)
 	enemy.execute_turn()

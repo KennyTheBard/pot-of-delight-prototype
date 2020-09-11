@@ -4,9 +4,10 @@ signal sanity_changed(sanity)
 signal courage_changed(courage)
 signal serenity_changed(serenity)
 signal hope_changed(hope)
+signal enter_state(state, state_type)
 signal player_died
 
-signal attack_enemy(attack_name)
+signal attack_enemy(attack_name, has_bonus)
 
 var sanity : int = 100
 var courage : int = 100
@@ -24,7 +25,8 @@ func take_damage(damage : int, damage_type : String) -> void:
 			if sanity <= 0:
 				if state.empty():
 					state = "insane"
-				else:
+					emit_signal("enter_state", state, "sanity")
+				elif state != "insane":
 					emit_signal("player_died")
 			emit_signal("sanity_changed", sanity)
 			
@@ -33,7 +35,8 @@ func take_damage(damage : int, damage_type : String) -> void:
 			if courage <= 0:
 				if state.empty():
 					state = "terrified"
-				else:
+					emit_signal("enter_state", state, "courage")
+				elif state != "terrified":
 					emit_signal("player_died")
 			emit_signal("courage_changed", courage)
 			
@@ -42,7 +45,8 @@ func take_damage(damage : int, damage_type : String) -> void:
 			if serenity <= 0:
 				if state.empty():
 					state = "enraged"
-				else:
+					emit_signal("enter_state", state, "serenity")
+				elif state != "enraged":
 					emit_signal("player_died")
 			emit_signal("serenity_changed", serenity)
 			
@@ -51,7 +55,8 @@ func take_damage(damage : int, damage_type : String) -> void:
 			if sanity <= 0:
 				if state.empty():
 					state = "hysteric"
-				else:
+					emit_signal("enter_state", state, "hope")
+				elif state != "hysteric":
 					emit_signal("player_died")
 			emit_signal("hope_changed", hope)
 
@@ -61,22 +66,22 @@ func _on_Prototype_player_turn():
 
 
 func _on_Dyslexia_pressed():
-	execute_turn("Dyslexia")
+	execute_turn("Dyslexia", state == "insane")
 
 
 func _on_DarkThoughts_pressed():
-	execute_turn("Dark Thoughts")
+	execute_turn("Dark Thoughts", state == "insane")
 
 
 func _on_Roar_pressed():
-	execute_turn("Roar")
+	execute_turn("Roar", state == "insane")
 
 
 func _on_Charge_pressed():
-	execute_turn("Charge")
+	execute_turn("Charge", state == "insane")
 
 
-func execute_turn(attack_name):
+func execute_turn(attack_name, has_bonus : bool):
 	if player_turn:
-		player_turn = false		
-		emit_signal("attack_enemy", attack_name)
+		player_turn = false
+		emit_signal("attack_enemy", attack_name, has_bonus)
