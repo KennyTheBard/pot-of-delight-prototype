@@ -3,6 +3,7 @@ extends Node2D
 signal attack_player(attack_name)
 signal health_changed(health)
 signal set_max_health(health)
+signal enemy_died
 
 export(float) var scale_period = 1.5
 export(float) var scale_difference = 0.01
@@ -39,7 +40,8 @@ func _on_TurnTimer_timeout():
 func take_damage(damage, damage_type):
 	health -= damage
 	emit_signal("health_changed", health)
-
+	if health <= 0:
+		emit_signal("enemy_died")
 
 func _start_scale_tween() -> void:
 	scale_tween.interpolate_property(sprite, "scale",

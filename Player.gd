@@ -4,6 +4,7 @@ signal sanity_changed(sanity)
 signal courage_changed(courage)
 signal serenity_changed(serenity)
 signal hope_changed(hope)
+signal player_died
 
 signal attack_enemy(attack_name)
 
@@ -29,6 +30,8 @@ func take_damage(damage : int, damage_type : String) -> void:
 		"hope":
 			hope -= damage
 			emit_signal("hope_changed", hope)
+	if sanity <= 0 or courage <= 0 or serenity <= 0 or hope <= 0:
+		emit_signal("player_died")
 
 
 func _on_Prototype_player_turn():
