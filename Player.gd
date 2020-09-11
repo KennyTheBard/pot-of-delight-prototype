@@ -16,7 +16,7 @@ var player_turn : bool
 
 
 func take_damage(damage : int, damage_type : String) -> void:
-	match damage_type:
+	match damage_type.to_lower():
 		"sanity":
 			sanity -= damage
 			emit_signal("sanity_changed", sanity)
@@ -36,5 +36,22 @@ func _on_Prototype_player_turn():
 
 
 func _on_Dyslexia_pressed():
+	execute_turn("Dyslexia")
+
+
+func _on_DarkThoughts_pressed():
+	execute_turn("Dark Thoughts")
+
+
+func _on_Roar_pressed():
+	execute_turn("Roar")
+
+
+func _on_Charge_pressed():
+	execute_turn("Charge")
+
+
+func execute_turn(attack_name):
 	if player_turn:
-		emit_signal("attack_enemy", "dyslexia")
+		player_turn = false		
+		emit_signal("attack_enemy", attack_name)
