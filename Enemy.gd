@@ -1,42 +1,36 @@
 extends Node2D
 
-signal use_move(move_name, move_color, damage, damage_type)
+signal attack_player(attack_name)
+signal health_changed(health)
 
 export(float) var scale_period = 1.5
 export(float) var scale_difference = 0.01
+
+export(int) var max_health = 100
 
 onready var sprite : Sprite = $Sprite
 onready var scale_tween : Tween = $Sprite/ScaleTween
 onready var scale_tween_values : Array = [sprite.scale , sprite.scale + Vector2(scale_difference, scale_difference)]
 
+var moves = ["Puke", "Closet Monster"]
 
-var moves = [
-	{
-		"name": "Puke",
-		"name_color": "#22BB22",
-		"damage_min": 15,
-		"damage_max": 20,
-		"damage_type": "serenity"
-	},
-	{
-		"name": "Closet Monster",
-		"name_color": "#CC1616",
-		"damage_min": 20,
-		"damage_max": 25,
-		"damage_type": "courage"
-	}
-]
+var health
 
 
 func _ready():
+	health = max_health
 	_start_scale_tween()
 
 
 func execute_turn(arena):
 	var random_move = moves[randi() % moves.size()]
-	var damage = int(round(rand_range(random_move["damage_min"], random_move["damage_max"])))
-	arena.get_node("Player").damage(damage, random_move["damage_type"])
-	emit_signal("use_move", random_move["name"], random_move["name_color"], damage, random_move["damage_type"])
+	emit_signal("attack_player", random_move)
+
+
+func take_damage(damage, damage_type):
+	health -= damage
+	emit_signal("health_changed", health)
+
 
 func _start_scale_tween() -> void:
 	scale_tween.interpolate_property(sprite, "scale",

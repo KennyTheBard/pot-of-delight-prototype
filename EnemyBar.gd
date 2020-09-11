@@ -1,14 +1,20 @@
-extends Node2D
+extends TextureProgress
 
-signal player_turn
-signal enemy_turn
+
+# Declare member variables here. Examples:
+# var a = 2
+# var b = "text"
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	$Arena/Enemy.execute_turn($Arena)
+	pass # Replace with function body.
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass
+
+
+func _on_Enemy_health_changed(health):
+	value = health

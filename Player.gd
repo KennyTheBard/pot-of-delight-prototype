@@ -5,17 +5,17 @@ signal courage_changed(courage)
 signal serenity_changed(serenity)
 signal hope_changed(hope)
 
+signal attack_enemy(attack_name)
+
 var sanity : int = 100
 var courage : int = 100
 var serenity : int = 100
 var hope : int = 100
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
+var player_turn : bool
 
 
-func damage(damage : int, damage_type : String) -> void:
+func take_damage(damage : int, damage_type : String) -> void:
 	match damage_type:
 		"sanity":
 			sanity -= damage
@@ -29,3 +29,12 @@ func damage(damage : int, damage_type : String) -> void:
 		"hope":
 			hope -= damage
 			emit_signal("hope_changed", hope)
+
+
+func _on_Prototype_player_turn():
+	player_turn = true
+
+
+func _on_Dyslexia_pressed():
+	if player_turn:
+		emit_signal("attack_enemy", "dyslexia")
