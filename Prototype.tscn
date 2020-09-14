@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://040_Darkgod_Db.png" type="Texture" id=1]
 [ext_resource path="res://Enemy.gd" type="Script" id=2]
@@ -12,8 +12,9 @@
 [ext_resource path="res://alienship2.png" type="Texture" id=10]
 [ext_resource path="res://blood.png" type="Texture" id=11]
 [ext_resource path="res://Turn.gd" type="Script" id=12]
+[ext_resource path="res://ui/bar/EmotionBar.tscn" type="PackedScene" id=13]
 
-[sub_resource type="DynamicFont" id=18]
+[sub_resource type="DynamicFont" id=1]
 size = 22
 outline_size = 3
 outline_color = Color( 0, 0, 0, 1 )
@@ -21,72 +22,37 @@ use_filter = true
 extra_spacing_char = 2
 font_data = ExtResource( 9 )
 
-[sub_resource type="Gradient" id=1]
+[sub_resource type="Gradient" id=2]
 offsets = PoolRealArray( 0 )
 colors = PoolColorArray( 0.34902, 0.34902, 0.34902, 0.784314 )
 
-[sub_resource type="GradientTexture" id=2]
-gradient = SubResource( 1 )
+[sub_resource type="GradientTexture" id=3]
+gradient = SubResource( 2 )
 
-[sub_resource type="Gradient" id=3]
+[sub_resource type="Gradient" id=4]
 offsets = PoolRealArray( 0 )
 colors = PoolColorArray( 1, 1, 1, 1 )
 
-[sub_resource type="GradientTexture" id=4]
-gradient = SubResource( 3 )
+[sub_resource type="GradientTexture" id=5]
+gradient = SubResource( 4 )
 
-[sub_resource type="Gradient" id=5]
-offsets = PoolRealArray( 0 )
-colors = PoolColorArray( 0.34902, 0.34902, 0.34902, 0.784314 )
-
-[sub_resource type="GradientTexture" id=6]
-gradient = SubResource( 5 )
-
-[sub_resource type="Gradient" id=7]
-offsets = PoolRealArray( 0 )
-colors = PoolColorArray( 1, 1, 0, 1 )
-
-[sub_resource type="GradientTexture" id=8]
-gradient = SubResource( 7 )
-
-[sub_resource type="Gradient" id=9]
-offsets = PoolRealArray( 0 )
-colors = PoolColorArray( 1, 0, 0, 1 )
-
-[sub_resource type="GradientTexture" id=10]
-gradient = SubResource( 9 )
-
-[sub_resource type="Gradient" id=11]
-offsets = PoolRealArray( 0 )
-colors = PoolColorArray( 0, 1, 0, 1 )
-
-[sub_resource type="GradientTexture" id=12]
-gradient = SubResource( 11 )
-
-[sub_resource type="Gradient" id=13]
-offsets = PoolRealArray( 0 )
-colors = PoolColorArray( 0, 1, 1, 1 )
-
-[sub_resource type="GradientTexture" id=14]
-gradient = SubResource( 13 )
-
-[sub_resource type="DynamicFont" id=15]
+[sub_resource type="DynamicFont" id=16]
 size = 64
 font_data = ExtResource( 9 )
 
-[sub_resource type="DynamicFont" id=16]
+[sub_resource type="DynamicFont" id=17]
 font_data = ExtResource( 9 )
 
-[sub_resource type="DynamicFont" id=17]
+[sub_resource type="DynamicFont" id=18]
 font_data = ExtResource( 9 )
 
 [node name="Prototype" type="Node2D"]
 script = ExtResource( 6 )
 
 [node name="alienship2" type="TextureRect" parent="."]
-margin_left = -25.0211
+margin_left = -25.5615
 margin_top = -54.1187
-margin_right = 1049.98
+margin_right = 1049.44
 margin_bottom = 716.881
 texture = ExtResource( 10 )
 expand = true
@@ -116,7 +82,7 @@ margin_bottom = 307.961
 rect_rotation = 13.3624
 rect_scale = Vector2( 0.95172, 1.13735 )
 rect_pivot_offset = Vector2( 163, 32 )
-custom_fonts/font = SubResource( 18 )
+custom_fonts/font = SubResource( 1 )
 text = "Your turn"
 align = 1
 valign = 1
@@ -133,8 +99,8 @@ margin_top = 347.891
 margin_right = 753.629
 margin_bottom = 366.891
 value = 100.0
-texture_under = SubResource( 2 )
-texture_progress = SubResource( 4 )
+texture_under = SubResource( 3 )
+texture_progress = SubResource( 5 )
 nine_patch_stretch = true
 script = ExtResource( 8 )
 __meta__ = {
@@ -149,57 +115,39 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Sanity" type="TextureProgress" parent="HUD/Bars"]
-margin_left = 29.4737
-margin_top = 24.3158
-margin_right = 370.474
-margin_bottom = 46.3158
-value = 100.0
-texture_under = SubResource( 6 )
-texture_progress = SubResource( 8 )
-nine_patch_stretch = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="Sadness" parent="HUD/Bars" instance=ExtResource( 13 )]
+anchor_right = 10.379
+anchor_bottom = 2.217
+margin_left = 25.2359
+margin_top = 24.0
+margin_right = -64.9241
+margin_bottom = -34.68
+label_text = "Sadness"
+progress_color = Color( 0.482353, 0.690196, 1, 1 )
 
-[node name="Courage" type="TextureProgress" parent="HUD/Bars"]
-margin_left = 29.4737
-margin_top = 69.5789
-margin_right = 370.474
-margin_bottom = 91.5789
-value = 100.0
-texture_under = SubResource( 6 )
-texture_progress = SubResource( 10 )
-nine_patch_stretch = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="Fear" parent="HUD/Bars" instance=ExtResource( 13 )]
+margin_left = 24.3676
+margin_top = 68.2263
+margin_right = 310.368
+margin_bottom = 58.2263
+label_text = "Fear"
+progress_color = Color( 1, 0.815686, 0.196078, 1 )
 
-[node name="Serenity" type="TextureProgress" parent="HUD/Bars"]
-margin_left = 29.4737
-margin_top = 119.053
-margin_right = 370.474
-margin_bottom = 141.053
-value = 100.0
-texture_under = SubResource( 6 )
-texture_progress = SubResource( 12 )
-nine_patch_stretch = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="Disgust" parent="HUD/Bars" instance=ExtResource( 13 )]
+margin_left = 25.2359
+margin_top = 112.373
+margin_right = 310.236
+margin_bottom = 102.373
+label_text = "Disgust"
+progress_color = Color( 0.670588, 0.843137, 0, 1 )
 
-[node name="Hope" type="TextureProgress" parent="HUD/Bars"]
-margin_left = 29.4737
-margin_top = 164.316
-margin_right = 370.474
-margin_bottom = 186.316
-value = 100.0
-texture_under = SubResource( 6 )
-texture_progress = SubResource( 14 )
-nine_patch_stretch = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="Anger" parent="HUD/Bars" instance=ExtResource( 13 )]
+margin_left = 24.3676
+margin_top = 157.521
+margin_right = 309.368
+margin_bottom = 147.521
+label_text = "Anger"
+progress_color = Color( 1, 0.427451, 0.262745, 1 )
 
 [node name="Logs" type="ColorRect" parent="HUD"]
 margin_left = 773.0
@@ -331,7 +279,7 @@ __meta__ = {
 [node name="Result" type="Label" parent="End/Container"]
 margin_right = 1019.0
 margin_bottom = 435.0
-custom_fonts/font = SubResource( 15 )
+custom_fonts/font = SubResource( 16 )
 text = "You won"
 align = 1
 valign = 1
@@ -344,7 +292,7 @@ margin_left = 342.388
 margin_top = 399.895
 margin_right = 483.388
 margin_bottom = 466.895
-custom_fonts/font = SubResource( 16 )
+custom_fonts/font = SubResource( 17 )
 text = "Replay"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -355,7 +303,7 @@ margin_left = 550.35
 margin_top = 401.0
 margin_right = 684.35
 margin_bottom = 468.0
-custom_fonts/font = SubResource( 17 )
+custom_fonts/font = SubResource( 18 )
 text = "Exit"
 __meta__ = {
 "_edit_use_anchors_": false
