@@ -52,5 +52,3 @@ margin_left = 324.215
 margin_top = -5.41647
 margin_right = 364.215
 margin_bottom = 34.5835
-[connection signal="resized" from="." to="." method="_on_EmotionBar_resized"]
-[connection signal="value_changed" from="." to="." method="_on_EmotionBar_value_changed"]

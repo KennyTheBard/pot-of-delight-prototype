@@ -1,12 +1,15 @@
 extends Control
 
+export(int) var margin = 5
 
-onready var vbox = $ScrollContainer/VBoxContainer
+onready var scroll_container : ScrollContainer = $ScrollContainer
+onready var vbox_container : VBoxContainer = $ScrollContainer/VBoxContainer
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	scroll_container.rect_size = rect_size - Vector2(2 * margin, 2 * margin)
+	scroll_container.rect_position = Vector2(margin, margin)
 
 
 func color_of_damage_type(move_type: String) -> Color:
@@ -26,7 +29,7 @@ func _log(text: String) -> void:
 	var log_line = RichTextLabel.new()
 	log_line.bbcode_enabled = true
 	log_line.bbcode_text = text
-	vbox.add_child(log_line)
+	vbox_container.add_child(log_line)
 	yield(get_tree(), "idle_frame")
 	log_line.rect_min_size.y = log_line.get_v_scroll().get_max()
 	_scroll_down()
@@ -51,3 +54,5 @@ func _scroll_down():
 	var bar : VScrollBar = $ScrollContainer.get_v_scrollbar()
 	yield(bar, "changed")
 	bar.value = bar.max_value
+
+

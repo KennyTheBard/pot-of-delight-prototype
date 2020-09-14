@@ -4,7 +4,7 @@
 [ext_resource path="res://Enemy.gd" type="Script" id=2]
 [ext_resource path="res://Player.gd" type="Script" id=3]
 [ext_resource path="res://Bars.gd" type="Script" id=4]
-[ext_resource path="res://Logs.gd" type="Script" id=5]
+[ext_resource path="res://ui/logs/Logs.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Prototype.gd" type="Script" id=6]
 [ext_resource path="res://Arena.gd" type="Script" id=7]
 [ext_resource path="res://Kenney Space.ttf" type="DynamicFontData" id=9]
@@ -25,7 +25,7 @@ font_data = ExtResource( 9 )
 [node name="Prototype" type="Node2D"]
 script = ExtResource( 6 )
 
-[node name="alienship2" type="TextureRect" parent="."]
+[node name="Background" type="TextureRect" parent="."]
 margin_left = -25.5615
 margin_top = -54.1187
 margin_right = 1049.44
@@ -40,51 +40,10 @@ __meta__ = {
 
 [node name="BattleMenu" type="ColorRect" parent="HUD"]
 margin_left = -2.0
-margin_top = 216.0
-margin_right = 274.0
+margin_top = -3.0
+margin_right = 345.0
 margin_bottom = 605.0
 color = Color( 0.207843, 0.207843, 0.207843, 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Dyslexia" type="Button" parent="HUD/BattleMenu"]
-margin_left = 55.0
-margin_top = 28.0
-margin_right = 181.0
-margin_bottom = 65.0
-rect_pivot_offset = Vector2( 87.5084, 73.6644 )
-text = "Dyslexia"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="DarkThoughts" type="Button" parent="HUD/BattleMenu"]
-margin_left = 55.0
-margin_top = 101.0
-margin_right = 181.0
-margin_bottom = 138.0
-rect_pivot_offset = Vector2( 87.5084, 0 )
-text = "Dark Thoughts"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Roar" type="Button" parent="HUD/BattleMenu"]
-margin_left = 229.0
-margin_top = 28.0
-margin_right = 352.0
-margin_bottom = 65.0
-rect_pivot_offset = Vector2( 87.5084, 73.6644 )
-text = "Roar"
-
-[node name="Charge" type="Button" parent="HUD/BattleMenu"]
-margin_left = 229.0
-margin_top = 101.0
-margin_right = 353.0
-margin_bottom = 139.0
-rect_pivot_offset = Vector2( 87.5084, 0 )
-text = "Charge"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -102,10 +61,10 @@ __meta__ = {
 }
 
 [node name="EnemyBar" parent="HUD" instance=ExtResource( 13 )]
-margin_left = 489.412
-margin_top = 25.0967
-margin_right = -79.5883
-margin_bottom = -544.903
+margin_left = 414.0
+margin_top = 25.0
+margin_right = -74.0
+margin_bottom = -545.0
 label_text = "Enemy"
 
 [node name="Bars" type="Control" parent="HUD"]
@@ -119,68 +78,42 @@ __meta__ = {
 [node name="Sadness" parent="HUD/Bars" instance=ExtResource( 13 )]
 anchor_right = 10.379
 anchor_bottom = 2.217
-margin_left = 25.2359
-margin_top = 24.0
-margin_right = -64.9241
-margin_bottom = -34.68
+margin_left = 9.41438
+margin_top = 57.0967
+margin_right = -80.7456
+margin_bottom = -1.58329
 label_text = "Sadness"
 progress_color = Color( 0.482353, 0.690196, 1, 1 )
 
 [node name="Fear" parent="HUD/Bars" instance=ExtResource( 13 )]
-margin_left = 24.3676
-margin_top = 68.2263
-margin_right = 310.368
-margin_bottom = 58.2263
+margin_left = 9.41438
+margin_top = 98.5985
+margin_right = 294.414
+margin_bottom = 88.5985
 label_text = "Fear"
 progress_color = Color( 1, 0.815686, 0.196078, 1 )
 
 [node name="Disgust" parent="HUD/Bars" instance=ExtResource( 13 )]
-margin_left = 25.2359
-margin_top = 112.373
-margin_right = 310.236
-margin_bottom = 102.373
+margin_left = 9.41438
+margin_top = 141.171
+margin_right = 294.414
+margin_bottom = 131.171
 label_text = "Disgust"
 progress_color = Color( 0.670588, 0.843137, 0, 1 )
 
 [node name="Anger" parent="HUD/Bars" instance=ExtResource( 13 )]
-margin_left = 24.3676
-margin_top = 157.521
-margin_right = 309.368
-margin_bottom = 147.521
+margin_left = 9.41438
+margin_top = 183.29
+margin_right = 294.414
+margin_bottom = 173.29
 label_text = "Anger"
 progress_color = Color( 1, 0.427451, 0.262745, 1 )
 
-[node name="Logs" type="ColorRect" parent="HUD"]
-margin_left = 368.0
-margin_top = 437.0
-margin_right = 1030.0
-margin_bottom = 605.0
-color = Color( 0.207843, 0.207843, 0.207843, 1 )
-script = ExtResource( 5 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="ScrollContainer" type="ScrollContainer" parent="HUD/Logs"]
-margin_left = 8.0
-margin_top = 7.0
-margin_right = 646.0
-margin_bottom = 157.0
-follow_focus = true
-scroll_horizontal_enabled = false
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="VBoxContainer" type="VBoxContainer" parent="HUD/Logs/ScrollContainer"]
-margin_right = 638.0
-margin_bottom = 150.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-alignment = 2
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="Logs" parent="HUD" instance=ExtResource( 5 )]
+margin_left = 344.0
+margin_top = 392.0
+margin_right = 1024.0
+margin_bottom = 601.0
 
 [node name="Arena" type="Node2D" parent="."]
 script = ExtResource( 7 )
@@ -257,17 +190,11 @@ text = "Exit"
 __meta__ = {
 "_edit_use_anchors_": false
 }
-[connection signal="pressed" from="HUD/BattleMenu/Dyslexia" to="Arena/Player" method="_on_Dyslexia_pressed"]
-[connection signal="pressed" from="HUD/BattleMenu/DarkThoughts" to="Arena/Player" method="_on_DarkThoughts_pressed"]
-[connection signal="pressed" from="HUD/BattleMenu/Roar" to="Arena/Player" method="_on_Roar_pressed"]
-[connection signal="pressed" from="HUD/BattleMenu/Charge" to="Arena/Player" method="_on_Charge_pressed"]
-[connection signal="logs" from="Arena" to="HUD/Logs" method="_on_Arena_logs"]
 [connection signal="attack_player" from="Arena/Enemy" to="Arena" method="_on_Enemy_attack_player"]
 [connection signal="enemy_died" from="Arena/Enemy" to="." method="_on_Enemy_enemy_died"]
 [connection signal="tween_completed" from="Arena/Enemy/Sprite/ScaleTween" to="Arena/Enemy" method="_on_ScaleTween_tween_completed"]
 [connection signal="timeout" from="Arena/Enemy/TurnTimer" to="Arena/Enemy" method="_on_TurnTimer_timeout"]
 [connection signal="attack_enemy" from="Arena/Player" to="Arena" method="_on_Player_attack_enemy"]
-[connection signal="enter_state" from="Arena/Player" to="HUD/Logs" method="_on_Player_enter_state"]
 [connection signal="player_died" from="Arena/Player" to="." method="_on_Player_player_died"]
 [connection signal="pressed" from="End/Container/Replay" to="." method="_on_Replay_pressed"]
 [connection signal="pressed" from="End/Container/Exit" to="." method="_on_Exit_pressed"]
