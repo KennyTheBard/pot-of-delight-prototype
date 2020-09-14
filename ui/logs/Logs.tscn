@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=2]
 
-[ext_resource path="res://Logs.gd" type="Script" id=1]
+[ext_resource path="res://ui/logs/Logs.gd" type="Script" id=1]
 
 [node name="Logs" type="ColorRect"]
 margin_left = 202.057

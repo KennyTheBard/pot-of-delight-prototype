@@ -1,0 +1,54 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://assets/fonts/Kenney Space.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://ui/bars/EmotionBar.gd" type="Script" id=2]
+
+[sub_resource type="Gradient" id=1]
+offsets = PoolRealArray( 0 )
+colors = PoolColorArray( 0.529412, 0.529412, 0.529412, 0.784314 )
+
+[sub_resource type="GradientTexture" id=2]
+gradient = SubResource( 1 )
+
+[sub_resource type="GradientTexture" id=3]
+
+[sub_resource type="DynamicFont" id=4]
+size = 12
+outline_size = 2
+outline_color = Color( 0, 0, 0, 1 )
+use_filter = true
+font_data = ExtResource( 1 )
+
+[node name="EmotionBar" type="TextureProgress"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = -710.0
+margin_bottom = -571.0
+rect_min_size = Vector2( 325, 30 )
+value = 35.0
+texture_under = SubResource( 2 )
+texture_progress = SubResource( 3 )
+nine_patch_stretch = true
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BarLabel" type="Label" parent="."]
+margin_top = -1.0
+margin_right = 328.0
+margin_bottom = 32.0
+custom_fonts/font = SubResource( 4 )
+text = "Test"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="StatusIcon" type="TextureRect" parent="."]
+visible = false
+margin_left = 324.215
+margin_top = -5.41647
+margin_right = 364.215
+margin_bottom = 34.5835

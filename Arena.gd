@@ -6,7 +6,7 @@ signal turn(whos_turn)
 onready var player = $Player
 onready var enemy = $Enemy
 
-var attacks = preload("res://attacks.gd").attacks
+var MoveSet = attacks.MoveSet
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -18,7 +18,7 @@ func _ready():
 
 func attack(attacker, attacked, attack_name, has_bonus: bool):
 	var attack
-	for a in attacks:
+	for a in MoveSet:
 		if a["name"] == attack_name:
 			attack = a
 			break

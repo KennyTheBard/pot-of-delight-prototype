@@ -6,7 +6,7 @@ signal player_died
 
 signal attack_enemy(attack_name, has_bonus)
 
-onready var Emotion = preload("res://Emotions.gd").Emotion
+onready var Emotion = emotions.Emotion
 
 export(int) var max_sadness = 100
 export(int) var max_fear = 100

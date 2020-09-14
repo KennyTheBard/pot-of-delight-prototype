@@ -17,11 +17,13 @@ _global_script_class_icons={
 
 config/name="Pot of Delight [Prototype]"
 run/main_scene="res://Prototype.tscn"
-config/icon="res://512px.png"
+config/icon="res://assets/icons/512px.png"
 
 [autoload]
 
-global="*res://global.gd"
+init="*res://autoload/init.gd"
+emotions="*res://autoload/emotions.gd"
+attacks="*res://autoload/attacks.gd"
 
 [rendering]
 

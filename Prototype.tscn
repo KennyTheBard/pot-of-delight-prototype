@@ -1,25 +1,32 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=17 format=2]
 
-[ext_resource path="res://040_Darkgod_Db.png" type="Texture" id=1]
+[ext_resource path="res://assets/images/040_Darkgod_Db.png" type="Texture" id=1]
 [ext_resource path="res://Enemy.gd" type="Script" id=2]
 [ext_resource path="res://Player.gd" type="Script" id=3]
-[ext_resource path="res://Bars.gd" type="Script" id=4]
+[ext_resource path="res://ui/bars/PlayerBars.tscn" type="PackedScene" id=4]
 [ext_resource path="res://ui/logs/Logs.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Prototype.gd" type="Script" id=6]
 [ext_resource path="res://Arena.gd" type="Script" id=7]
+[ext_resource path="res://assets/fonts/Kenney Space.ttf" type="DynamicFontData" id=8]
 [ext_resource path="res://Kenney Space.ttf" type="DynamicFontData" id=9]
-[ext_resource path="res://alienship2.png" type="Texture" id=10]
-[ext_resource path="res://blood.png" type="Texture" id=11]
-[ext_resource path="res://ui/bar/EmotionBar.tscn" type="PackedScene" id=13]
+[ext_resource path="res://assets/images/alienship2.png" type="Texture" id=10]
+[ext_resource path="res://assets/images/blood.png" type="Texture" id=11]
+[ext_resource path="res://ui/bars/EmotionBar.tscn" type="PackedScene" id=13]
 
-[sub_resource type="DynamicFont" id=16]
+[sub_resource type="DynamicFont" id=4]
+outline_size = 2
+outline_color = Color( 0, 0, 0, 1 )
+use_filter = true
+font_data = ExtResource( 8 )
+
+[sub_resource type="DynamicFont" id=1]
 size = 64
+font_data = ExtResource( 8 )
+
+[sub_resource type="DynamicFont" id=2]
 font_data = ExtResource( 9 )
 
-[sub_resource type="DynamicFont" id=17]
-font_data = ExtResource( 9 )
-
-[sub_resource type="DynamicFont" id=18]
+[sub_resource type="DynamicFont" id=3]
 font_data = ExtResource( 9 )
 
 [node name="Prototype" type="Node2D"]
@@ -41,12 +48,31 @@ __meta__ = {
 [node name="BattleMenu" type="ColorRect" parent="HUD"]
 margin_left = -2.0
 margin_top = -3.0
-margin_right = 345.0
+margin_right = 349.0
 margin_bottom = 605.0
 color = Color( 0.207843, 0.207843, 0.207843, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="PCName" type="Label" parent="HUD/BattleMenu"]
+margin_left = 11.0
+margin_top = 10.0
+margin_right = 337.0
+margin_bottom = 55.0
+custom_fonts/font = SubResource( 4 )
+text = "Test"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PlayerBars" parent="HUD/BattleMenu" instance=ExtResource( 4 )]
+margin_left = 2.0
+margin_top = 3.0
+margin_right = 42.0
+margin_bottom = 43.0
 
 [node name="State" type="TextureRect" parent="HUD"]
 visible = false
@@ -66,48 +92,6 @@ margin_top = 25.0
 margin_right = -74.0
 margin_bottom = -545.0
 label_text = "Enemy"
-
-[node name="Bars" type="Control" parent="HUD"]
-margin_right = 40.0
-margin_bottom = 40.0
-script = ExtResource( 4 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Sadness" parent="HUD/Bars" instance=ExtResource( 13 )]
-anchor_right = 10.379
-anchor_bottom = 2.217
-margin_left = 9.41438
-margin_top = 57.0967
-margin_right = -80.7456
-margin_bottom = -1.58329
-label_text = "Sadness"
-progress_color = Color( 0.482353, 0.690196, 1, 1 )
-
-[node name="Fear" parent="HUD/Bars" instance=ExtResource( 13 )]
-margin_left = 9.41438
-margin_top = 98.5985
-margin_right = 294.414
-margin_bottom = 88.5985
-label_text = "Fear"
-progress_color = Color( 1, 0.815686, 0.196078, 1 )
-
-[node name="Disgust" parent="HUD/Bars" instance=ExtResource( 13 )]
-margin_left = 9.41438
-margin_top = 141.171
-margin_right = 294.414
-margin_bottom = 131.171
-label_text = "Disgust"
-progress_color = Color( 0.670588, 0.843137, 0, 1 )
-
-[node name="Anger" parent="HUD/Bars" instance=ExtResource( 13 )]
-margin_left = 9.41438
-margin_top = 183.29
-margin_right = 294.414
-margin_bottom = 173.29
-label_text = "Anger"
-progress_color = Color( 1, 0.427451, 0.262745, 1 )
 
 [node name="Logs" parent="HUD" instance=ExtResource( 5 )]
 margin_left = 344.0
@@ -161,7 +145,7 @@ __meta__ = {
 [node name="Result" type="Label" parent="End/Container"]
 margin_right = 1019.0
 margin_bottom = 435.0
-custom_fonts/font = SubResource( 16 )
+custom_fonts/font = SubResource( 1 )
 text = "You won"
 align = 1
 valign = 1
@@ -174,7 +158,7 @@ margin_left = 342.388
 margin_top = 399.895
 margin_right = 483.388
 margin_bottom = 466.895
-custom_fonts/font = SubResource( 17 )
+custom_fonts/font = SubResource( 2 )
 text = "Replay"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -185,7 +169,7 @@ margin_left = 550.35
 margin_top = 401.0
 margin_right = 684.35
 margin_bottom = 468.0
-custom_fonts/font = SubResource( 18 )
+custom_fonts/font = SubResource( 3 )
 text = "Exit"
 __meta__ = {
 "_edit_use_anchors_": false
