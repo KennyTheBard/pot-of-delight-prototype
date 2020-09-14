@@ -8,6 +8,7 @@ export(Texture) var status_icon
 func _ready():
 	# set label text
 	$BarLabel.text = label_text
+	$BarLabel.rect_min_size = rect_min_size
 	
 	# set progress bar color
 	var tex = GradientTexture.new()
@@ -24,3 +25,7 @@ func _ready():
 
 func _on_EmotionBar_value_changed(value):
 	$StatusIcon.visible = (value == max_value)
+
+
+func _on_EmotionBar_resized():
+	$BarLabel.rect_size = rect_size

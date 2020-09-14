@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://040_Darkgod_Db.png" type="Texture" id=1]
 [ext_resource path="res://Enemy.gd" type="Script" id=2]
@@ -7,34 +7,10 @@
 [ext_resource path="res://Logs.gd" type="Script" id=5]
 [ext_resource path="res://Prototype.gd" type="Script" id=6]
 [ext_resource path="res://Arena.gd" type="Script" id=7]
-[ext_resource path="res://EnemyBar.gd" type="Script" id=8]
 [ext_resource path="res://Kenney Space.ttf" type="DynamicFontData" id=9]
 [ext_resource path="res://alienship2.png" type="Texture" id=10]
 [ext_resource path="res://blood.png" type="Texture" id=11]
-[ext_resource path="res://Turn.gd" type="Script" id=12]
 [ext_resource path="res://ui/bar/EmotionBar.tscn" type="PackedScene" id=13]
-
-[sub_resource type="DynamicFont" id=1]
-size = 22
-outline_size = 3
-outline_color = Color( 0, 0, 0, 1 )
-use_filter = true
-extra_spacing_char = 2
-font_data = ExtResource( 9 )
-
-[sub_resource type="Gradient" id=2]
-offsets = PoolRealArray( 0 )
-colors = PoolColorArray( 0.34902, 0.34902, 0.34902, 0.784314 )
-
-[sub_resource type="GradientTexture" id=3]
-gradient = SubResource( 2 )
-
-[sub_resource type="Gradient" id=4]
-offsets = PoolRealArray( 0 )
-colors = PoolColorArray( 1, 1, 1, 1 )
-
-[sub_resource type="GradientTexture" id=5]
-gradient = SubResource( 4 )
 
 [sub_resource type="DynamicFont" id=16]
 size = 64
@@ -62,130 +38,11 @@ __meta__ = {
 
 [node name="HUD" type="CanvasLayer" parent="."]
 
-[node name="State" type="TextureRect" parent="HUD"]
-visible = false
-modulate = Color( 0.054902, 1, 0, 1 )
-self_modulate = Color( 1, 1, 1, 0.501961 )
-margin_right = 1029.0
-margin_bottom = 599.0
-texture = ExtResource( 11 )
-expand = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Turn" type="Label" parent="HUD"]
-margin_left = 12.8784
-margin_top = 243.961
-margin_right = 338.878
-margin_bottom = 307.961
-rect_rotation = 13.3624
-rect_scale = Vector2( 0.95172, 1.13735 )
-rect_pivot_offset = Vector2( 163, 32 )
-custom_fonts/font = SubResource( 1 )
-text = "Your turn"
-align = 1
-valign = 1
-script = ExtResource( 12 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Tween" type="Tween" parent="HUD/Turn"]
-
-[node name="EnemyBar" type="TextureProgress" parent="HUD"]
-margin_left = 286.629
-margin_top = 347.891
-margin_right = 753.629
-margin_bottom = 366.891
-value = 100.0
-texture_under = SubResource( 3 )
-texture_progress = SubResource( 5 )
-nine_patch_stretch = true
-script = ExtResource( 8 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Bars" type="Control" parent="HUD"]
-margin_right = 40.0
-margin_bottom = 40.0
-script = ExtResource( 4 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Sadness" parent="HUD/Bars" instance=ExtResource( 13 )]
-anchor_right = 10.379
-anchor_bottom = 2.217
-margin_left = 25.2359
-margin_top = 24.0
-margin_right = -64.9241
-margin_bottom = -34.68
-label_text = "Sadness"
-progress_color = Color( 0.482353, 0.690196, 1, 1 )
-
-[node name="Fear" parent="HUD/Bars" instance=ExtResource( 13 )]
-margin_left = 24.3676
-margin_top = 68.2263
-margin_right = 310.368
-margin_bottom = 58.2263
-label_text = "Fear"
-progress_color = Color( 1, 0.815686, 0.196078, 1 )
-
-[node name="Disgust" parent="HUD/Bars" instance=ExtResource( 13 )]
-margin_left = 25.2359
-margin_top = 112.373
-margin_right = 310.236
-margin_bottom = 102.373
-label_text = "Disgust"
-progress_color = Color( 0.670588, 0.843137, 0, 1 )
-
-[node name="Anger" parent="HUD/Bars" instance=ExtResource( 13 )]
-margin_left = 24.3676
-margin_top = 157.521
-margin_right = 309.368
-margin_bottom = 147.521
-label_text = "Anger"
-progress_color = Color( 1, 0.427451, 0.262745, 1 )
-
-[node name="Logs" type="ColorRect" parent="HUD"]
-margin_left = 773.0
-margin_top = 17.0
-margin_right = 999.0
-margin_bottom = 578.0
-color = Color( 0.207843, 0.207843, 0.207843, 1 )
-script = ExtResource( 5 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="ScrollContainer" type="ScrollContainer" parent="HUD/Logs"]
-margin_left = 8.0
-margin_top = 7.0
-margin_right = 219.0
-margin_bottom = 554.0
-follow_focus = true
-scroll_horizontal_enabled = false
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="VBoxContainer" type="VBoxContainer" parent="HUD/Logs/ScrollContainer"]
-margin_right = 211.0
-margin_bottom = 547.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-alignment = 2
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
 [node name="BattleMenu" type="ColorRect" parent="HUD"]
-margin_left = 34.0
-margin_top = 385.0
-margin_right = 754.0
-margin_bottom = 576.0
+margin_left = -2.0
+margin_top = 216.0
+margin_right = 274.0
+margin_bottom = 605.0
 color = Color( 0.207843, 0.207843, 0.207843, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -232,19 +89,110 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="State" type="TextureRect" parent="HUD"]
+visible = false
+modulate = Color( 0.054902, 1, 0, 1 )
+self_modulate = Color( 1, 1, 1, 0.501961 )
+margin_right = 1029.0
+margin_bottom = 599.0
+texture = ExtResource( 11 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="EnemyBar" parent="HUD" instance=ExtResource( 13 )]
+margin_left = 489.412
+margin_top = 25.0967
+margin_right = -79.5883
+margin_bottom = -544.903
+label_text = "Enemy"
+
+[node name="Bars" type="Control" parent="HUD"]
+margin_right = 40.0
+margin_bottom = 40.0
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sadness" parent="HUD/Bars" instance=ExtResource( 13 )]
+anchor_right = 10.379
+anchor_bottom = 2.217
+margin_left = 25.2359
+margin_top = 24.0
+margin_right = -64.9241
+margin_bottom = -34.68
+label_text = "Sadness"
+progress_color = Color( 0.482353, 0.690196, 1, 1 )
+
+[node name="Fear" parent="HUD/Bars" instance=ExtResource( 13 )]
+margin_left = 24.3676
+margin_top = 68.2263
+margin_right = 310.368
+margin_bottom = 58.2263
+label_text = "Fear"
+progress_color = Color( 1, 0.815686, 0.196078, 1 )
+
+[node name="Disgust" parent="HUD/Bars" instance=ExtResource( 13 )]
+margin_left = 25.2359
+margin_top = 112.373
+margin_right = 310.236
+margin_bottom = 102.373
+label_text = "Disgust"
+progress_color = Color( 0.670588, 0.843137, 0, 1 )
+
+[node name="Anger" parent="HUD/Bars" instance=ExtResource( 13 )]
+margin_left = 24.3676
+margin_top = 157.521
+margin_right = 309.368
+margin_bottom = 147.521
+label_text = "Anger"
+progress_color = Color( 1, 0.427451, 0.262745, 1 )
+
+[node name="Logs" type="ColorRect" parent="HUD"]
+margin_left = 368.0
+margin_top = 437.0
+margin_right = 1030.0
+margin_bottom = 605.0
+color = Color( 0.207843, 0.207843, 0.207843, 1 )
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ScrollContainer" type="ScrollContainer" parent="HUD/Logs"]
+margin_left = 8.0
+margin_top = 7.0
+margin_right = 646.0
+margin_bottom = 157.0
+follow_focus = true
+scroll_horizontal_enabled = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HUD/Logs/ScrollContainer"]
+margin_right = 638.0
+margin_bottom = 150.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+alignment = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="Arena" type="Node2D" parent="."]
 script = ExtResource( 7 )
 
 [node name="Enemy" type="Node2D" parent="Arena"]
+position = Vector2( 196.842, -13.6842 )
 script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="Arena/Enemy"]
 position = Vector2( 505.549, 310.7 )
 scale = Vector2( 0.2, 0.2 )
 texture = ExtResource( 1 )
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="ScaleTween" type="Tween" parent="Arena/Enemy/Sprite"]
 
@@ -254,6 +202,7 @@ __meta__ = {
 one_shot = true
 
 [node name="Player" type="Node2D" parent="Arena"]
+position = Vector2( -73.6844, 15.7895 )
 script = ExtResource( 3 )
 
 [node name="End" type="CanvasLayer" parent="."]
@@ -308,25 +257,17 @@ text = "Exit"
 __meta__ = {
 "_edit_use_anchors_": false
 }
-[connection signal="tween_completed" from="HUD/Turn/Tween" to="HUD/Turn" method="_on_Tween_tween_completed"]
 [connection signal="pressed" from="HUD/BattleMenu/Dyslexia" to="Arena/Player" method="_on_Dyslexia_pressed"]
 [connection signal="pressed" from="HUD/BattleMenu/DarkThoughts" to="Arena/Player" method="_on_DarkThoughts_pressed"]
 [connection signal="pressed" from="HUD/BattleMenu/Roar" to="Arena/Player" method="_on_Roar_pressed"]
 [connection signal="pressed" from="HUD/BattleMenu/Charge" to="Arena/Player" method="_on_Charge_pressed"]
 [connection signal="logs" from="Arena" to="HUD/Logs" method="_on_Arena_logs"]
-[connection signal="turn" from="Arena" to="HUD/Turn" method="_on_Arena_turn"]
 [connection signal="attack_player" from="Arena/Enemy" to="Arena" method="_on_Enemy_attack_player"]
 [connection signal="enemy_died" from="Arena/Enemy" to="." method="_on_Enemy_enemy_died"]
-[connection signal="health_changed" from="Arena/Enemy" to="HUD/EnemyBar" method="_on_Enemy_health_changed"]
-[connection signal="set_max_health" from="Arena/Enemy" to="HUD/EnemyBar" method="_on_Enemy_set_max_health"]
 [connection signal="tween_completed" from="Arena/Enemy/Sprite/ScaleTween" to="Arena/Enemy" method="_on_ScaleTween_tween_completed"]
 [connection signal="timeout" from="Arena/Enemy/TurnTimer" to="Arena/Enemy" method="_on_TurnTimer_timeout"]
 [connection signal="attack_enemy" from="Arena/Player" to="Arena" method="_on_Player_attack_enemy"]
-[connection signal="courage_changed" from="Arena/Player" to="HUD/Bars" method="_on_Player_courage_changed"]
 [connection signal="enter_state" from="Arena/Player" to="HUD/Logs" method="_on_Player_enter_state"]
-[connection signal="hope_changed" from="Arena/Player" to="HUD/Bars" method="_on_Player_hope_changed"]
 [connection signal="player_died" from="Arena/Player" to="." method="_on_Player_player_died"]
-[connection signal="sanity_changed" from="Arena/Player" to="HUD/Bars" method="_on_Player_sanity_changed"]
-[connection signal="serenity_changed" from="Arena/Player" to="HUD/Bars" method="_on_Player_serenity_changed"]
 [connection signal="pressed" from="End/Container/Replay" to="." method="_on_Replay_pressed"]
 [connection signal="pressed" from="End/Container/Exit" to="." method="_on_Exit_pressed"]

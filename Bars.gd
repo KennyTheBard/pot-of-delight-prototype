@@ -1,9 +1,11 @@
 extends Control
 
+var bars : Dictionary
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	for child in get_children():
+		bars[child.name] = child
 
 
 func _on_Player_courage_changed(courage):
