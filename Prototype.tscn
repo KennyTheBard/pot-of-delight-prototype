@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=2]
+[gd_scene load_steps=31 format=2]
 
 [ext_resource path="res://040_Darkgod_Db.png" type="Texture" id=1]
 [ext_resource path="res://Enemy.gd" type="Script" id=2]
@@ -11,6 +11,15 @@
 [ext_resource path="res://Kenney Space.ttf" type="DynamicFontData" id=9]
 [ext_resource path="res://alienship2.png" type="Texture" id=10]
 [ext_resource path="res://blood.png" type="Texture" id=11]
+[ext_resource path="res://Turn.gd" type="Script" id=12]
+
+[sub_resource type="DynamicFont" id=18]
+size = 22
+outline_size = 3
+outline_color = Color( 0, 0, 0, 1 )
+use_filter = true
+extra_spacing_char = 2
+font_data = ExtResource( 9 )
 
 [sub_resource type="Gradient" id=1]
 offsets = PoolRealArray( 0 )
@@ -98,6 +107,25 @@ expand = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Turn" type="Label" parent="HUD"]
+margin_left = 12.8784
+margin_top = 243.961
+margin_right = 338.878
+margin_bottom = 307.961
+rect_rotation = 13.3624
+rect_scale = Vector2( 0.95172, 1.13735 )
+rect_pivot_offset = Vector2( 163, 32 )
+custom_fonts/font = SubResource( 18 )
+text = "Your turn"
+align = 1
+valign = 1
+script = ExtResource( 12 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Tween" type="Tween" parent="HUD/Turn"]
 
 [node name="EnemyBar" type="TextureProgress" parent="HUD"]
 margin_left = 286.629
@@ -332,11 +360,13 @@ text = "Exit"
 __meta__ = {
 "_edit_use_anchors_": false
 }
+[connection signal="tween_completed" from="HUD/Turn/Tween" to="HUD/Turn" method="_on_Tween_tween_completed"]
 [connection signal="pressed" from="HUD/BattleMenu/Dyslexia" to="Arena/Player" method="_on_Dyslexia_pressed"]
 [connection signal="pressed" from="HUD/BattleMenu/DarkThoughts" to="Arena/Player" method="_on_DarkThoughts_pressed"]
 [connection signal="pressed" from="HUD/BattleMenu/Roar" to="Arena/Player" method="_on_Roar_pressed"]
 [connection signal="pressed" from="HUD/BattleMenu/Charge" to="Arena/Player" method="_on_Charge_pressed"]
 [connection signal="logs" from="Arena" to="HUD/Logs" method="_on_Arena_logs"]
+[connection signal="turn" from="Arena" to="HUD/Turn" method="_on_Arena_turn"]
 [connection signal="attack_player" from="Arena/Enemy" to="Arena" method="_on_Enemy_attack_player"]
 [connection signal="enemy_died" from="Arena/Enemy" to="." method="_on_Enemy_enemy_died"]
 [connection signal="health_changed" from="Arena/Enemy" to="HUD/EnemyBar" method="_on_Enemy_health_changed"]

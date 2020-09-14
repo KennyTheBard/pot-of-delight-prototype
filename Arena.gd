@@ -1,6 +1,7 @@
 extends Node2D
 
 signal logs(user, move_name, move_type, damage)
+signal turn(whos_turn)
 
 onready var player = $Player
 onready var enemy = $Enemy
@@ -37,9 +38,11 @@ func attack(attacker, attacked, attack_name, has_bonus: bool):
 
 func _on_Enemy_attack_player(attack_name):
 	attack(enemy, player, attack_name, false)
+	emit_signal("turn", "Your turn")
 	player.player_turn = true
 
 
 func _on_Player_attack_enemy(attack_name, has_bonus):
 	attack(player, enemy, attack_name, has_bonus)
+	emit_signal("turn", "Enemy turn")
 	enemy.execute_turn()
