@@ -18,9 +18,10 @@ func _ready():
 
 func attack(attacker, attacked, attack_name, has_bonus: bool):
 	var attack
-	for a in MoveSet:
-		if a["name"] == attack_name:
-			attack = a
+	print(MoveSet)
+	for a in MoveSet.keys():
+		if a == attack_name:
+			attack = MoveSet[a]
 			break
 	var modifier : float = 1.0
 	if has_bonus:
