@@ -16,7 +16,7 @@ class Move:
 		self.max_damage = max_damage
 		self.cost = cost
 	
-	func get_damage(modifier : float = 0.0) -> int:
+	func get_damage(modifier : float = 1.0) -> int:
 		var random_damage = rand_range(min_damage, max_damage)
 		return int(round(random_damage * modifier))
 

@@ -64,3 +64,4 @@ __meta__ = {
 "_edit_lock_": true,
 "_edit_use_anchors_": false
 }
+[connection signal="use_move" from="HUD/BattleMenu/MoveMenu" to="." method="_on_MoveMenu_use_move"]

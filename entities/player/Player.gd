@@ -1,10 +1,9 @@
 extends "res://entities/BaseEntity.gd"
 
 signal emotion_changed(emotion, emotion_value)
+signal use_move(move_name)
 signal enter_state(emotion)
 signal player_died
-
-signal attack_enemy(attack_name, has_bonus)
 
 onready var Emotion = emotions.Emotion
 
@@ -63,4 +62,8 @@ func _on_Prototype_player_turn():
 func execute_turn(attack_name, has_bonus : bool):
 	if player_turn:
 		player_turn = false
-		emit_signal("attack_enemy", attack_name, has_bonus)
+		emit_signal("use_move", attack_name, has_bonus)
+
+
+func _on_MoveMenu_use_move(move_name):
+	emit_signal("use_move", move_name)
