@@ -1,4 +1,4 @@
-extends Node2D
+extends "res://entities/BaseEntity.gd"
 
 signal emotion_changed(emotion, emotion_value)
 signal enter_state(emotion)

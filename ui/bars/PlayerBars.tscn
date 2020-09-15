@@ -1,10 +1,7 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://ui/bars/EmotionBar.tscn" type="PackedScene" id=1]
-[ext_resource path="res://ui/bars/EmotionBar.gd" type="Script" id=2]
 [ext_resource path="res://ui/bars/PlayerBars.gd" type="Script" id=3]
-
-
 
 [sub_resource type="Gradient" id=1]
 offsets = PoolRealArray( 0 )
@@ -23,78 +20,44 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="SadnessBar" type="TextureProgress" parent="." instance=ExtResource( 1 )]
+[node name="SadnessBar" parent="." instance=ExtResource( 1 )]
 anchor_right = 10.379
 anchor_bottom = 2.217
 margin_left = 9.41438
 margin_top = 57.0967
 margin_right = -80.7456
 margin_bottom = -1.58329
-rect_min_size = Vector2( 325, 30 )
-value = 35.0
 texture_under = SubResource( 2 )
 texture_progress = SubResource( 3 )
-nine_patch_stretch = true
-script = ExtResource( 2 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 label_text = "Sadness"
 progress_color = Color( 0.482353, 0.690196, 1, 1 )
 
-[node name="FearBar" type="TextureProgress" parent="." instance=ExtResource( 1 )]
-anchor_right = 1.0
-anchor_bottom = 1.0
+[node name="FearBar" parent="." instance=ExtResource( 1 )]
 margin_left = 9.41438
 margin_top = 98.5985
 margin_right = 294.414
 margin_bottom = 88.5985
-rect_min_size = Vector2( 325, 30 )
-value = 35.0
 texture_under = SubResource( 2 )
 texture_progress = SubResource( 3 )
-nine_patch_stretch = true
-script = ExtResource( 2 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 label_text = "Fear"
 progress_color = Color( 1, 0.815686, 0.196078, 1 )
 
-[node name="DisgustBar" type="TextureProgress" parent="." instance=ExtResource( 1 )]
-anchor_right = 1.0
-anchor_bottom = 1.0
+[node name="DisgustBar" parent="." instance=ExtResource( 1 )]
 margin_left = 9.41438
 margin_top = 141.171
 margin_right = 294.414
 margin_bottom = 131.171
-rect_min_size = Vector2( 325, 30 )
-value = 35.0
 texture_under = SubResource( 2 )
 texture_progress = SubResource( 3 )
-nine_patch_stretch = true
-script = ExtResource( 2 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 label_text = "Disgust"
 progress_color = Color( 0.670588, 0.843137, 0, 1 )
 
-[node name="AngerBar" type="TextureProgress" parent="." instance=ExtResource( 1 )]
-anchor_right = 1.0
-anchor_bottom = 1.0
+[node name="AngerBar" parent="." instance=ExtResource( 1 )]
 margin_left = 9.41438
 margin_top = 183.29
 margin_right = 294.414
 margin_bottom = 173.29
-rect_min_size = Vector2( 325, 30 )
-value = 35.0
 texture_under = SubResource( 2 )
 texture_progress = SubResource( 3 )
-nine_patch_stretch = true
-script = ExtResource( 2 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 label_text = "Anger"
 progress_color = Color( 1, 0.427451, 0.262745, 1 )

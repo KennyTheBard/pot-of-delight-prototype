@@ -1,48 +1,35 @@
 extends Node2D
 
-signal logs(user, move_name, move_type, damage)
-signal turn(whos_turn)
+onready var player = $Combatants/Player
+onready var enemy = $Combatants/Enemy
+onready var logs = $HUD/Logs
 
-onready var player = $Player
-onready var enemy = $Enemy
+var move_set = moves.MoveSet
 
-var MoveSet = moves.MoveSet
-
-# Called when the node enters the scene tree for the first time.
 func _ready():
-	if randi() % 2 == 0:
-		enemy.execute_turn()
-	else:
-		player.player_turn = true
+	logs.log_attack("test", "puke", emotions.Emotion.DISGUST, 10)
 
 
-func attack(attacker, attacked, attack_name, has_bonus: bool):
-	var attack
-	for a in MoveSet.keys():
-		if a == attack_name:
-			attack = MoveSet[a]
-			break
-	var modifier : float = 1.0
-	if has_bonus:
-		modifier = 1.25
-	var damage = int(round(rand_range(attack["min_damage"], attack["max_damage"]) * modifier))
-	attacked.take_damage(damage, attack["type"])
-	attacker.take_damage(attack["cost"], attack["type"])
+func attack(attacker, attacked, attack_name):
+	var move : moves.Move = move_set[attack_name]
+	var damage = move.get_damage()
+	attacked.take_damage(damage, move.type)
+	attacker.take_damage(move.cost, move.type)
 	
 	# logs
 	var user = "Enemy"
 	if attacker == player:
 		user = "Player"
-	emit_signal("logs", user, attack["name"], attack["type"], damage)
+	logs.log_attack(user, move.name, move.type, damage)
 
 
 func _on_Enemy_attack_player(attack_name):
-	attack(enemy, player, attack_name, false)
+	attack(enemy, player, attack_name)
 	emit_signal("turn", "Your turn")
 	player.player_turn = true
 
 
-func _on_Player_attack_enemy(attack_name, has_bonus):
-	attack(player, enemy, attack_name, has_bonus)
+func _on_Player_attack_enemy(attack_name):
+	attack(player, enemy, attack_name)
 	emit_signal("turn", "Enemy turn")
 	enemy.execute_turn()

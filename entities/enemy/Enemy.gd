@@ -1,4 +1,4 @@
-extends Node2D
+extends "res://entities/BaseEntity.gd"
 
 signal attack_player(attack_name)
 signal health_changed(health)

@@ -16,7 +16,7 @@ _global_script_class_icons={
 [application]
 
 config/name="Pot of Delight [Prototype]"
-run/main_scene="res://Main.tscn"
+run/main_scene="res://Combat.tscn"
 config/icon="res://assets/icons/512px.png"
 
 [autoload]
