@@ -16,14 +16,14 @@ _global_script_class_icons={
 [application]
 
 config/name="Pot of Delight [Prototype]"
-run/main_scene="res://Prototype.tscn"
+run/main_scene="res://Main.tscn"
 config/icon="res://assets/icons/512px.png"
 
 [autoload]
 
 init="*res://autoload/init.gd"
 emotions="*res://autoload/emotions.gd"
-attacks="*res://autoload/attacks.gd"
+moves="*res://autoload/moves.gd"
 
 [rendering]
 

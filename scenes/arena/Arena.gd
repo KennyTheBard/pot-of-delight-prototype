@@ -6,7 +6,7 @@ signal turn(whos_turn)
 onready var player = $Player
 onready var enemy = $Enemy
 
-var MoveSet = attacks.MoveSet
+var MoveSet = moves.MoveSet
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

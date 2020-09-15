@@ -1,0 +1,66 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://entities/player/Player.gd" type="Script" id=1]
+[ext_resource path="res://ui/move_menu/MoveMenu.gd" type="Script" id=2]
+[ext_resource path="res://ui/bars/PlayerBars.tscn" type="PackedScene" id=3]
+[ext_resource path="res://ui/move_menu/MoveMenu.tscn" type="PackedScene" id=4]
+[ext_resource path="res://assets/fonts/Kenney Space.ttf" type="DynamicFontData" id=5]
+[ext_resource path="res://ui/bars/PlayerBars.gd" type="Script" id=6]
+
+[sub_resource type="DynamicFont" id=1]
+outline_size = 2
+outline_color = Color( 0, 0, 0, 1 )
+use_filter = true
+font_data = ExtResource( 5 )
+
+[node name="Player" type="Node2D"]
+position = Vector2( -73.6844, 15.7895 )
+script = ExtResource( 1 )
+
+[node name="HUD" type="CanvasLayer" parent="."]
+
+[node name="BattleMenu" type="ColorRect" parent="HUD"]
+margin_left = 0.435471
+margin_top = 0.512095
+margin_right = 351.435
+margin_bottom = 394.512
+color = Color( 0.207843, 0.207843, 0.207843, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PCName" type="Label" parent="HUD/BattleMenu"]
+margin_left = 11.0
+margin_top = 10.0
+margin_right = 337.0
+margin_bottom = 55.0
+custom_fonts/font = SubResource( 1 )
+text = "Test"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="PlayerBars" type="Control" parent="HUD/BattleMenu" instance=ExtResource( 3 )]
+margin_left = 2.0
+margin_top = 3.0
+margin_right = 42.0
+margin_bottom = 43.0
+script = ExtResource( 6 )
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="MoveMenu" type="ScrollContainer" parent="HUD/BattleMenu" instance=ExtResource( 4 )]
+margin_left = 17.0
+margin_top = 231.0
+margin_right = 332.0
+margin_bottom = 391.0
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}

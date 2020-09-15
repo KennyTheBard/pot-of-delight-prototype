@@ -60,7 +60,6 @@ func _on_Prototype_player_turn():
 	player_turn = true
 
 
-
 func execute_turn(attack_name, has_bonus : bool):
 	if player_turn:
 		player_turn = false
