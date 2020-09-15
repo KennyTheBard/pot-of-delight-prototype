@@ -1,4 +1,4 @@
-extends Node2D
+extends Node
 
 onready var player = $Combatants/Player
 onready var enemy = $Combatants/Enemy
@@ -8,7 +8,6 @@ onready var move_set = moves.MoveSet
 
 
 func attack(attacker, attacked, move_name):
-	print(move_set, move_name)
 	var move : moves.Move = move_set.get(move_name)
 	var damage = move.get_damage()
 	attacked.take_damage(damage, move.type)
