@@ -10,5 +10,9 @@ onready var bars : Dictionary = {
 }
 
 
-func _on_Player_emotion_changed(emotion, emotion_value):
+func set_emotion_value(emotion, emotion_value):
 	bars[emotion].value = emotion_value
+
+
+func set_emotion_max_value(emotion, max_value):
+	bars[emotion].max_value = max_value

@@ -47,9 +47,9 @@ margin = 10
 
 [node name="Combatants" type="Node" parent="Arena"]
 
-[node name="Enemy" parent="Arena/Combatants" instance=ExtResource( 3 )]
-
 [node name="Player" parent="Arena/Combatants" instance=ExtResource( 5 )]
+
+[node name="Enemy" parent="Arena/Combatants" instance=ExtResource( 3 )]
 
 [node name="End" type="CanvasLayer" parent="."]
 
@@ -104,5 +104,6 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 [connection signal="use_move" from="Arena/Combatants/Player" to="Arena" method="_on_Player_use_move"]
+[connection signal="use_move" from="Arena/Combatants/Enemy" to="Arena" method="_on_Enemy_use_move"]
 [connection signal="pressed" from="End/Container/Replay" to="." method="_on_Replay_pressed"]
 [connection signal="pressed" from="End/Container/Exit" to="." method="_on_Exit_pressed"]

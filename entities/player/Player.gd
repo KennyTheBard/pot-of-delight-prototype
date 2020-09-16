@@ -1,10 +1,11 @@
 extends "res://entities/BaseEntity.gd"
 
-signal emotion_changed(emotion, emotion_value)
 signal enter_state(emotion)
 signal player_died
 
 onready var Emotion = emotions.Emotion
+onready var health_bars = $HUD/BattleMenu/PlayerBars
+onready var move_menu = $HUD/BattleMenu/MoveMenu
 
 export(int) var max_sadness = 100
 export(int) var max_fear = 100
@@ -17,20 +18,17 @@ onready var max_emotions_value : Dictionary = {
 	Emotion.DISGUST: max_disgust,
 	Emotion.ANGER: max_anger
 }
-onready var emotions_value : Dictionary = {
-	Emotion.SADNESS: max_sadness,
-	Emotion.FEAR: max_fear,
-	Emotion.DISGUST: max_disgust,
-	Emotion.ANGER: max_anger
-}
-onready var emotional_state : Dictionary = {
-	Emotion.SADNESS: false,
-	Emotion.FEAR: false,
-	Emotion.DISGUST: false,
-	Emotion.ANGER: false
-}
+onready var emotions_value : Dictionary
+onready var emotional_state : Dictionary
 
-var player_turn : bool
+var player_turn = false
+
+func _ready():
+	for emotion in max_emotions_value.keys():
+		emotions_value[emotion] = 0
+		emotional_state[emotion] = false
+		health_bars.set_emotion_max_value(emotion, max_emotions_value.get(emotion))
+		health_bars.set_emotion_value(emotion, 0)
 
 
 func has_died() -> bool:
@@ -50,19 +48,17 @@ func take_damage(damage : int, emotion : int) -> void:
 				emit_signal("player_died")
 			else:
 				emit_signal("enter_state", emotion)
-	else:
-		emit_signal("emotion_changed", emotion, emotions_value[emotion])
+	
+	# update corresponding health bar
+	health_bars.set_emotion_value(emotion, emotions_value.get(emotion))
 
 
-func _on_Prototype_player_turn():
+func execute_turn():
 	player_turn = true
-
-
-func execute_turn(attack_name, has_bonus : bool):
-	if player_turn:
-		player_turn = false
-		emit_signal("use_move", attack_name, has_bonus)
+	yield(move_menu, "use_move")
 
 
 func _on_MoveMenu_use_move(move_name):
-	emit_signal("use_move", move_name)
+	if player_turn:
+		emit_signal("use_move", move_name)
+		player_turn = false
