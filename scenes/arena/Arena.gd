@@ -18,10 +18,11 @@ func attack(attacker, attacked, move_name):
 	var move : moves.Move = move_set.get(move_name)
 	var damage = move.get_damage()
 	attacked.take_damage(damage, move.type)
-	attacker.take_damage(move.cost, move.type)
 	
 	# logs
 	if attacker == player:
+		# only the player takes cost damage
+		attacker.take_damage(move.cost, move.type)
 		logs.log_attack("Player", move.name, move.type, damage)
 	else:
 		logs.log_attack("Enemy", move.name, move.type, damage, true)

@@ -6,12 +6,12 @@ signal enemy_died
 
 export(float) var scale_period = 1.5
 export(float) var scale_difference = 0.01
-export(float) var damage_color_period = 0.1
 
 export(int) var max_health = 1000
 
-export(Color) var damage_color_add = Color(1, 0, 0)
-export(Color) var damage_color_substract = Color(0, 0.5, 0.5)
+export(float) var damage_color_period = 0.05
+export(float) var damage_color_pause = 0.05
+export(int) var damage_color_repetition = 3
 
 onready var sprite : Sprite = $Sprite
 onready var scale_tween : Tween = $Sprite/ScaleTween
@@ -52,8 +52,10 @@ func _on_TurnTimer_timeout():
 func take_damage(damage, damage_type):
 	health -= damage
 	health_bar.value = health
+	_start_damage_color_tween()
 	if health <= 0:
 		emit_signal("enemy_died")
+
 
 func _start_scale_tween() -> void:
 	scale_tween.interpolate_property(sprite, "scale",
@@ -65,20 +67,38 @@ func _start_scale_tween() -> void:
 func _on_ScaleTween_tween_completed(object, key):
 	scale_tween_values.invert()
 	_start_scale_tween()
-	_start_damage_color_tween()
 
 
 func _start_damage_color_tween() -> void:
-	var damage_color = damage_color_add - damage_color_substract
-	damage_color_tween.interpolate_property(sprite, "modulate",
-		sprite.modulate, sprite.modulate + damage_color, damage_color_period)
-	damage_color_tween.start()
-	
-	yield(damage_color_tween, "tween_completed")
-
-	damage_color_tween.interpolate_property(sprite, "modulate",
-		sprite.modulate, sprite.modulate - damage_color, damage_color_period)
-	damage_color_tween.start()
+	for i in range(damage_color_repetition):
+		# get colors to modulate with
+		var red_mod = Color(0, -1, -1)
+		var white_mod = Color(0.5, 0.5, 0.5)
+		
+		# to red animation
+		damage_color_tween.interpolate_property(sprite, "modulate",
+			sprite.modulate, sprite.modulate + red_mod, damage_color_period)
+		damage_color_tween.start()
+		
+		# wait for the first animation to complete
+		yield(damage_color_tween, "tween_completed")
+		
+		# to white animation
+		damage_color_tween.interpolate_property(sprite, "modulate",
+			sprite.modulate, sprite.modulate - red_mod + white_mod, damage_color_period)
+		damage_color_tween.start()
+		
+		# wait for second animation to complete
+		yield(damage_color_tween, "tween_completed")
+		
+		# backward animation
+		damage_color_tween.interpolate_property(sprite, "modulate",
+			sprite.modulate, sprite.modulate - white_mod, damage_color_period)
+		damage_color_tween.start()
+		
+		# wait for third animation to complete
+		yield(damage_color_tween, "tween_completed")
+		yield(get_tree().create_timer(damage_color_pause), "timeout")
 
 
 func _start_translate_tween() -> void:
@@ -90,9 +110,10 @@ func _start_translate_tween() -> void:
 	
 	# wait for first animation to complete
 	yield(translate_tween, "tween_completed")
-
+	
 	# return animation
 	translate_tween.interpolate_property(sprite, "global_position",
 		sprite.global_position, sprite.global_position + Vector2(50, 0), 0.3,
 		Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 	translate_tween.start()
+

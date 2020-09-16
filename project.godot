@@ -24,6 +24,7 @@ config/icon="res://assets/icons/512px.png"
 init="*res://autoload/init.gd"
 emotions="*res://autoload/emotions.gd"
 moves="*res://autoload/moves.gd"
+player_data="*res://autoload/player_data.gd"
 
 [rendering]
 

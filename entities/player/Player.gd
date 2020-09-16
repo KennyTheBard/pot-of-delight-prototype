@@ -24,11 +24,19 @@ onready var emotional_state : Dictionary
 var player_turn = false
 
 func _ready():
+	# prepare emotion states
 	for emotion in max_emotions_value.keys():
 		emotions_value[emotion] = 0
 		emotional_state[emotion] = false
 		health_bars.set_emotion_max_value(emotion, max_emotions_value.get(emotion))
 		health_bars.set_emotion_value(emotion, 0)
+	
+	# prepare known moves
+	for move in moves.MoveSet.values():
+		move_menu.add_move(move)
+	
+	# prepare player name
+	$HUD/BattleMenu/PCName.text = player_data.player["name"]
 
 
 func has_died() -> bool:
