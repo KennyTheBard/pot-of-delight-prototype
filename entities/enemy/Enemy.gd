@@ -1,6 +1,5 @@
 extends "res://entities/BaseEntity.gd"
 
-signal attack_player(attack_name)
 signal health_changed(health)
 signal set_max_health(health)
 signal enemy_died
@@ -21,14 +20,22 @@ onready var damage_color_tween : Tween = $Sprite/DamageColorTween
 
 onready var scale_tween_values : Array = [sprite.scale , sprite.scale + Vector2(scale_difference, scale_difference)]
 
+onready var health_bar = $HUD/EnemyBar
+
 var moves = ["Puke", "Closet Monster"]
 
 var health
 
 
 func _ready():
+	# set initial health
 	health = max_health
-	emit_signal("set_max_health", max_health)
+	
+	# set healthbar parameters
+	health_bar.max_value = max_health
+	health_bar.value = health
+	
+	# start idle animation
 	_start_scale_tween()
 
 
@@ -38,13 +45,13 @@ func execute_turn():
 
 func _on_TurnTimer_timeout():
 	var random_move = moves[randi() % moves.size()]
-	emit_signal("attack_player", random_move)
+	emit_signal("use_move", random_move)
 	_start_translate_tween()
 
 
 func take_damage(damage, damage_type):
 	health -= damage
-	emit_signal("health_changed", health)
+	health_bar.value = health
 	if health <= 0:
 		emit_signal("enemy_died")
 

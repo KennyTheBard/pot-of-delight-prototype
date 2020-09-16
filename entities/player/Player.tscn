@@ -1,11 +1,9 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://entities/player/Player.gd" type="Script" id=1]
-[ext_resource path="res://ui/move_menu/MoveMenu.gd" type="Script" id=2]
 [ext_resource path="res://ui/bars/PlayerBars.tscn" type="PackedScene" id=3]
 [ext_resource path="res://ui/move_menu/MoveMenu.tscn" type="PackedScene" id=4]
 [ext_resource path="res://assets/fonts/Kenney Space.ttf" type="DynamicFontData" id=5]
-[ext_resource path="res://ui/bars/PlayerBars.gd" type="Script" id=6]
 
 [sub_resource type="DynamicFont" id=1]
 outline_size = 2
@@ -43,25 +41,11 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="PlayerBars" type="Control" parent="HUD/BattleMenu" instance=ExtResource( 3 )]
+[node name="PlayerBars" parent="HUD/BattleMenu" instance=ExtResource( 3 )]
 margin_left = 2.0
 margin_top = 3.0
 margin_right = 42.0
 margin_bottom = 43.0
-script = ExtResource( 6 )
-__meta__ = {
-"_edit_lock_": true,
-"_edit_use_anchors_": false
-}
 
-[node name="MoveMenu" type="ScrollContainer" parent="HUD/BattleMenu" instance=ExtResource( 4 )]
-margin_left = 17.0
-margin_top = 231.0
-margin_right = 332.0
-margin_bottom = 391.0
-script = ExtResource( 2 )
-__meta__ = {
-"_edit_lock_": true,
-"_edit_use_anchors_": false
-}
+[node name="MoveMenu" parent="HUD/BattleMenu" instance=ExtResource( 4 )]
 [connection signal="use_move" from="HUD/BattleMenu/MoveMenu" to="." method="_on_MoveMenu_use_move"]

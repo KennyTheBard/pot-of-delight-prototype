@@ -26,11 +26,7 @@ func _on_Enemy_attack_player(move_name):
 	player.player_turn = true
 
 
-func _on_Player_attack_enemy(move_name):
+func _on_Player_use_move(move_name):
 	attack(player, enemy, move_name)
 	emit_signal("turn", "Enemy turn")
 	enemy.execute_turn()
-
-
-func _on_Player_use_move(move_name):
-	attack(player, enemy, move_name)

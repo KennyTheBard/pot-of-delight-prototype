@@ -1,7 +1,6 @@
 extends "res://entities/BaseEntity.gd"
 
 signal emotion_changed(emotion, emotion_value)
-signal use_move(move_name)
 signal enter_state(emotion)
 signal player_died
 
