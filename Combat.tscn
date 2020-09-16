@@ -48,6 +48,7 @@ margin = 10
 [node name="Combatants" type="Node" parent="Arena"]
 
 [node name="Player" parent="Arena/Combatants" instance=ExtResource( 5 )]
+position = Vector2( 0, 0 )
 
 [node name="Enemy" parent="Arena/Combatants" instance=ExtResource( 3 )]
 

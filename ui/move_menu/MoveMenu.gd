@@ -23,3 +23,8 @@ func add_move(move : moves.Move) -> void:
 
 func _move_pressed(button):
 	emit_signal("use_move", button.text)
+
+
+func disable_buttons(state : bool):
+	for button in vbox.get_children():
+		button.disabled = state

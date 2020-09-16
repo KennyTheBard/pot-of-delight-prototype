@@ -21,10 +21,10 @@ func attack(attacker, attacked, move_name):
 	attacker.take_damage(move.cost, move.type)
 	
 	# logs
-	var user = "Enemy"
 	if attacker == player:
-		user = "Player"
-	logs.log_attack(user, move.name, move.type, damage)
+		logs.log_attack("Player", move.name, move.type, damage)
+	else:
+		logs.log_attack("Enemy", move.name, move.type, damage, true)
 
 
 func _on_Player_use_move(move_name):
@@ -35,3 +35,4 @@ func _on_Player_use_move(move_name):
 func _on_Enemy_use_move(move_name):
 	attack(enemy, player, move_name)
 	player.execute_turn()
+	yield(player, "turn_completed")

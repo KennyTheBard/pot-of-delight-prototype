@@ -22,7 +22,7 @@ onready var scale_tween_values : Array = [sprite.scale , sprite.scale + Vector2(
 
 onready var health_bar = $HUD/EnemyBar
 
-var moves = ["Puke", "Closet Monster"]
+var moves = ["Roar", "Closet Monster"]
 
 var health
 

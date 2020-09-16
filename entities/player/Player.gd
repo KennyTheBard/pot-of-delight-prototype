@@ -54,11 +54,10 @@ func take_damage(damage : int, emotion : int) -> void:
 
 
 func execute_turn():
-	player_turn = true
-	yield(move_menu, "use_move")
+	move_menu.disable_buttons(false)
 
 
 func _on_MoveMenu_use_move(move_name):
-	if player_turn:
-		emit_signal("use_move", move_name)
-		player_turn = false
+	emit_signal("use_move", move_name)
+	move_menu.disable_buttons(true)
+	emit_signal("turn_completed")

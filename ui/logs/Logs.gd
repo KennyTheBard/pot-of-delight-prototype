@@ -25,18 +25,12 @@ func color_of_damage_type(move_type: int) -> Color:
 	return Color(0.4, 0.4, 0.4)
 
 
-func log_attack(user, move_name, move_type, damage):
+func log_attack(user, move_name, move_type, damage, align_right = false):
 	var move_color : Color = color_of_damage_type(move_type)
 	var move : String = "[color=#" + move_color.to_html(false) + "]" + move_name.to_upper() + "[/color]"
 	var text = user + " used " + move + " for " + str(damage) + " damage."
-	_log(text)
-
-
-func _on_Player_enter_state(state, state_type):
-	var state_color : Color = color_of_damage_type(state_type)
-	var state_text : String = "[color=#" + state_color.to_html(false) + "]" + state.to_upper() + "[/color]"
-	var damage_state : String = "[color=#" + state_color.to_html(false) + "]" + state_type.to_upper() + "[/color]"
-	var text = "Player has become " + state_text + ". Bonus " + damage_state + " damage."
+	if align_right:
+		text = "[right]" + text + "[/right]"
 	_log(text)
 
 
