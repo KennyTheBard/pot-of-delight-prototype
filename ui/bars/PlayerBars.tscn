@@ -69,3 +69,6 @@ progress_color = Color( 1, 0.427451, 0.262745, 1 )
 label_text = "Anger"
 special_max_behaviour = true
 max_value_text = "Enraged"
+
+[node name="SyncTimer" type="Timer" parent="."]
+[connection signal="timeout" from="SyncTimer" to="." method="_on_SyncTimer_timeout"]

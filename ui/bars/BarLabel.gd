@@ -5,7 +5,6 @@ export(int) var font_increase = 4
 
 onready var font_file = preload("res://assets/fonts/Kenney Space.ttf")
 onready var font_resize_tween = $FontResizeTween
-onready var font_resize_period : float = get_parent().max_behaviour_period
 
 var resizing : bool = false
 var font : DynamicFont
@@ -22,7 +21,7 @@ func _ready():
 
 func _scale_font_up():
 	font_resize_tween.interpolate_property(font, "size",
-		font.size, font.size + font_increase, font_resize_period,
+		font.size, font.size + font_increase, get_parent().max_behaviour_period,
 		Tween.TRANS_SINE, Tween.EASE_IN_OUT)
 	font_resize_tween.start()
 	
@@ -32,7 +31,7 @@ func _scale_font_up():
 
 func _scale_font_down():
 	font_resize_tween.interpolate_property(font, "size",
-		font.size, font.size - font_increase, font_resize_period,
+		font.size, font.size - font_increase, get_parent().max_behaviour_period,
 		Tween.TRANS_SINE, Tween.EASE_IN_OUT)
 	font_resize_tween.start()
 	

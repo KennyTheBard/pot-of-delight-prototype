@@ -32,7 +32,9 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ColorTween" type="Tween" parent="."]
+[node name="LightenTween" type="Tween" parent="."]
+
+[node name="DarkenTween" type="Tween" parent="."]
 
 [node name="BarLabel" type="Label" parent="."]
 margin_top = -11.0
@@ -48,3 +50,5 @@ __meta__ = {
 
 [node name="FontResizeTween" type="Tween" parent="BarLabel"]
 [connection signal="value_changed" from="." to="." method="_on_EmotionBar_value_changed"]
+[connection signal="tween_completed" from="LightenTween" to="." method="_on_LightenTween_tween_completed"]
+[connection signal="tween_completed" from="DarkenTween" to="." method="_on_DarkenTween_tween_completed"]
