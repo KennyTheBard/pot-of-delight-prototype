@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://ui/bars/EmotionBar.gd" type="Script" id=2]
 [ext_resource path="res://ui/bars/BarLabel.gd" type="Script" id=3]
@@ -10,7 +10,12 @@ colors = PoolColorArray( 0.529412, 0.529412, 0.529412, 0.784314 )
 [sub_resource type="GradientTexture" id=2]
 gradient = SubResource( 1 )
 
-[sub_resource type="GradientTexture" id=3]
+[sub_resource type="Gradient" id=3]
+offsets = PoolRealArray( 0 )
+colors = PoolColorArray( 1, 1, 1, 1 )
+
+[sub_resource type="GradientTexture" id=4]
+gradient = SubResource( 3 )
 
 [node name="EmotionBar" type="TextureProgress"]
 anchor_right = 1.0
@@ -20,12 +25,14 @@ margin_bottom = -571.0
 rect_min_size = Vector2( 325, 30 )
 value = 35.0
 texture_under = SubResource( 2 )
-texture_progress = SubResource( 3 )
+texture_progress = SubResource( 4 )
 nine_patch_stretch = true
 script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="ColorTween" type="Tween" parent="."]
 
 [node name="BarLabel" type="Label" parent="."]
 margin_top = -11.0

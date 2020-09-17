@@ -2,10 +2,10 @@ extends Label
 
 export(int) var font_initial_size = 14
 export(int) var font_increase = 4
-export(float) var font_resize_period = 0.25
 
 onready var font_file = preload("res://assets/fonts/Kenney Space.ttf")
 onready var font_resize_tween = $FontResizeTween
+onready var font_resize_period : float = get_parent().max_behaviour_period
 
 var resizing : bool = false
 var font : DynamicFont
