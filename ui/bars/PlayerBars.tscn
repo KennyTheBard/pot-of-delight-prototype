@@ -30,6 +30,8 @@ margin_bottom = -1.58329
 texture_under = SubResource( 2 )
 texture_progress = SubResource( 3 )
 label_text = "Sadness"
+special_max_behaviour = true
+max_value_text = "Depressed"
 progress_color = Color( 0.482353, 0.690196, 1, 1 )
 
 [node name="FearBar" parent="." instance=ExtResource( 1 )]
@@ -40,6 +42,8 @@ margin_bottom = 88.5985
 texture_under = SubResource( 2 )
 texture_progress = SubResource( 3 )
 label_text = "Fear"
+special_max_behaviour = true
+max_value_text = "Terrified"
 progress_color = Color( 1, 0.815686, 0.196078, 1 )
 
 [node name="DisgustBar" parent="." instance=ExtResource( 1 )]
@@ -50,6 +54,8 @@ margin_bottom = 131.171
 texture_under = SubResource( 2 )
 texture_progress = SubResource( 3 )
 label_text = "Disgust"
+special_max_behaviour = true
+max_value_text = "Repulsed"
 progress_color = Color( 0.670588, 0.843137, 0, 1 )
 
 [node name="AngerBar" parent="." instance=ExtResource( 1 )]
@@ -60,4 +66,6 @@ margin_bottom = 173.29
 texture_under = SubResource( 2 )
 texture_progress = SubResource( 3 )
 label_text = "Anger"
+special_max_behaviour = true
+max_value_text = "Enraged"
 progress_color = Color( 1, 0.427451, 0.262745, 1 )

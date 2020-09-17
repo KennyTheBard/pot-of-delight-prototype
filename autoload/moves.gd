@@ -22,8 +22,8 @@ class Move:
 
 
 onready var MoveSet : Dictionary = {
-	"Puke": Move.new("Puke", Emotion.DISGUST, 10, 20, 3),
-	"Closet Monster": Move.new("Closet Monster", Emotion.FEAR, 15, 25, 7),
-	"Roar": Move.new("Roar", Emotion.ANGER, 17, 22, 7),
-	"Dark Thoughts": Move.new("Dark Thoughts", Emotion.SADNESS, 13, 18, 4)
+	"Puke": Move.new("Puke", Emotion.DISGUST, 10, 20, 50),
+	"Closet Monster": Move.new("Closet Monster", Emotion.FEAR, 15, 25, 50),
+	"Roar": Move.new("Roar", Emotion.ANGER, 17, 22, 50),
+	"Dark Thoughts": Move.new("Dark Thoughts", Emotion.SADNESS, 13, 18, 50)
 }

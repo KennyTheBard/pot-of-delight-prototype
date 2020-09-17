@@ -1,15 +1,18 @@
 extends TextureProgress
 
 export(String) var label_text = ""
+export(bool) var special_max_behaviour = false
+export(String) var max_value_text = ""
 export(Color) var progress_color = Color(1, 1, 1)
-export(Texture) var status_icon
+
+onready var label = $BarLabel
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	# set label text
-	$BarLabel.text = label_text
-	$BarLabel.rect_min_size = rect_min_size
-	$BarLabel.rect_size = rect_size
+	label.text = label_text
+	label.rect_min_size = rect_min_size
+	label.rect_size = rect_size + Vector2(0, 25)
 	
 	# set progress bar color
 	var tex = GradientTexture.new()
@@ -19,11 +22,13 @@ func _ready():
 	grad.add_point(0, progress_color)
 	tex.gradient = grad
 	texture_progress = tex
-	
-	# set status icon
-	$StatusIcon.texture = status_icon
 
 
 func _on_EmotionBar_value_changed(value):
-	$StatusIcon.visible = (value == max_value)
+	if value == max_value and special_max_behaviour:
+		label.text = max_value_text
+		label.toggle_max_behaviour(true)
+	else:
+		label.text = label_text
+		label.toggle_max_behaviour(false)
 
