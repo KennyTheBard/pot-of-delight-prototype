@@ -1,11 +1,11 @@
 [gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://assets/images/alienship2.png" type="Texture" id=1]
+[ext_resource path="res://scenes/dungeon/DungeonLevel.gd" type="Script" id=1]
 [ext_resource path="res://scenes/dungeon/Room.tscn" type="PackedScene" id=2]
-[ext_resource path="res://scenes/dungeon/DungeonLevel.gd" type="Script" id=3]
+[ext_resource path="res://assets/images/alienship2.png" type="Texture" id=3]
 
 [node name="DungeonLevel" type="Node2D"]
-script = ExtResource( 3 )
+script = ExtResource( 1 )
 entrance_room_path = NodePath("../DungeonLevel/Room")
 
 [node name="TextureRect" type="TextureRect" parent="."]
@@ -13,7 +13,7 @@ margin_left = -25.561
 margin_top = -55.626
 margin_right = 1049.44
 margin_bottom = 715.374
-texture = ExtResource( 1 )
+texture = ExtResource( 3 )
 expand = true
 __meta__ = {
 "_edit_lock_": true,
@@ -21,19 +21,30 @@ __meta__ = {
 }
 
 [node name="Room" parent="." instance=ExtResource( 2 )]
-position = Vector2( 544.481, 476.003 )
+position = Vector2( 151.987, 354.08 )
 next_rooms = [ NodePath("../Room2"), NodePath("../Room3") ]
 
 [node name="Room2" parent="." instance=ExtResource( 2 )]
-position = Vector2( 337.378, 334.037 )
+position = Vector2( 320.676, 172.029 )
 next_rooms = [ NodePath("../Room4") ]
 
 [node name="Room3" parent="." instance=ExtResource( 2 )]
-position = Vector2( 564.523, 300.634 )
+position = Vector2( 332.367, 372.452 )
 next_rooms = [ NodePath("../Room4"), NodePath("../Room5") ]
 
 [node name="Room4" parent="." instance=ExtResource( 2 )]
-position = Vector2( 521.098, 128.604 )
+position = Vector2( 517.758, 248.857 )
+next_rooms = [ NodePath("../Room6"), NodePath("../Room7") ]
 
 [node name="Room5" parent="." instance=ExtResource( 2 )]
-position = Vector2( 778.307, 135.285 )
+position = Vector2( 524.439, 440.929 )
+next_rooms = [ NodePath("../Room7"), NodePath("../Room8") ]
+
+[node name="Room6" parent="." instance=ExtResource( 2 )]
+position = Vector2( 686.446, 125.264 )
+
+[node name="Room7" parent="." instance=ExtResource( 2 )]
+position = Vector2( 741.562, 329.026 )
+
+[node name="Room8" parent="." instance=ExtResource( 2 )]
+position = Vector2( 671.415, 507.736 )
