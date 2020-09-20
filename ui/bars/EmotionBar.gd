@@ -33,19 +33,18 @@ func _ready():
 	tint_progress = progress_color
 
 
-func _on_LightenTween_tween_completed(object, key):
+func _on_LightenTween_tween_completed(_object, _key):
 	darken_tween.interpolate_property(self, "tint_progress",
 		tint_progress, progress_color, max_behaviour_period,
 		Tween.TRANS_SINE, Tween.EASE_IN_OUT)
 	darken_tween.start()
 
 
-func _on_DarkenTween_tween_completed(object, key):
+func _on_DarkenTween_tween_completed(_object, _key):
 	lighten_tween.interpolate_property(self, "tint_progress",
 		progress_color, lerp(progress_color, Color.white, 0.9), max_behaviour_period,
 		Tween.TRANS_SINE, Tween.EASE_IN_OUT)
 	lighten_tween.start()
-
 
 
 func _on_EmotionBar_value_changed(value):

@@ -1,7 +1,5 @@
 extends "res://entities/BaseEntity.gd"
 
-signal health_changed(health)
-signal set_max_health(health)
 signal enemy_died
 
 export(float) var scale_period = 1.5
@@ -49,7 +47,7 @@ func _on_TurnTimer_timeout():
 	_start_translate_tween()
 
 
-func take_damage(damage, damage_type):
+func take_damage(damage, _damage_type):
 	health -= damage
 	health_bar.value = health
 	_start_damage_color_tween()
@@ -64,13 +62,13 @@ func _start_scale_tween() -> void:
 	scale_tween.start()
 
 
-func _on_ScaleTween_tween_completed(object, key):
+func _on_ScaleTween_tween_completed(_object, _key):
 	scale_tween_values.invert()
 	_start_scale_tween()
 
 
 func _start_damage_color_tween() -> void:
-	for i in range(damage_color_repetition):
+	for _i in range(damage_color_repetition):
 		# get colors to modulate with
 		var red_mod = Color(0, -1, -1)
 		var white_mod = Color(0.5, 0.5, 0.5)
