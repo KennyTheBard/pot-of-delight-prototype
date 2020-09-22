@@ -3,7 +3,6 @@ extends "res://entities/BaseEntity.gd"
 signal enter_state(emotion)
 signal player_died
 
-onready var Emotion = emotions.Emotion
 onready var health_bars = $HUD/BattleMenu/PlayerBars
 onready var move_menu = $HUD/BattleMenu/MoveMenu
 
@@ -13,10 +12,10 @@ export(int) var max_disgust = 100
 export(int) var max_anger = 100
 
 onready var max_emotions_value : Dictionary = {
-	Emotion.SADNESS: max_sadness,
-	Emotion.FEAR: max_fear,
-	Emotion.DISGUST: max_disgust,
-	Emotion.ANGER: max_anger
+	emotions.SADNESS: max_sadness,
+	emotions.FEAR: max_fear,
+	emotions.DISGUST: max_disgust,
+	emotions.ANGER: max_anger
 }
 onready var emotions_value : Dictionary
 onready var emotional_state : Dictionary

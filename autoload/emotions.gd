@@ -1,6 +1,6 @@
 extends Node
 
-enum Emotion {
+enum {
 	ERROR,
 	SADNESS,
 	FEAR,
